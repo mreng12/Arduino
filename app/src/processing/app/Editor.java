@@ -94,6 +94,9 @@ import cc.arduino.view.StubMenuListener;
 import cc.arduino.view.findreplace.FindReplace;
 import jssc.SerialPortException;
 import processing.app.debug.RunnerException;
+import processing.app.debug.TargetBoard;
+import processing.app.debug.TargetPackage;
+import processing.app.debug.TargetPlatform;
 import processing.app.forms.PasswordAuthorizationDialog;
 import processing.app.helpers.DocumentTextChangeListener;
 import processing.app.helpers.Keys;
@@ -1013,7 +1016,7 @@ public class Editor extends JFrame implements RunnerListener {
   }
 
 
-  private void selectSerialPort(String name) {
+  private void selectSerialPort(String name, String boardId) {
     if(portMenu == null) {
       System.out.println(tr("serialMenu is null"));
       return;
@@ -1064,7 +1067,13 @@ public class Editor extends JFrame implements RunnerListener {
     public BoardPortJCheckBoxMenuItem(BoardPort port) {
       super(port.getLabel());
       addActionListener(e -> {
-        selectSerialPort(port.getAddress());
+        selectSerialPort(port.getAddress(), port.getBoardId());
+        if (port.getBoardId() != null && PreferencesData.getBoolean("editor.autoselectboard")) {
+          TargetBoard targetBoard = BaseNoGui.getPlatform().resolveBoardById(BaseNoGui.packages, port.getBoardId());
+          if (targetBoard != null) {
+            base.selectTargetBoard(targetBoard);
+          }
+        }
         base.onBoardOrPortChange();
       });
       this.port = port;

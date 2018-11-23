@@ -163,7 +163,7 @@ public class NetworkDiscovery implements Discovery, ServiceListener, Runnable {
 
   @Override
   public List<BoardPort> listDiscoveredBoards() {
-      synchronized (reachableBoardPorts) {
+    synchronized (reachableBoardPorts) {
       return getBoardPortsDiscoveredWithJmDNS();
     }
   }
@@ -177,8 +177,8 @@ public class NetworkDiscovery implements Discovery, ServiceListener, Runnable {
 
   public void setReachableBoardPorts(List<BoardPort> newReachableBoardPorts) {
     synchronized (reachableBoardPorts) {
-      this.reachableBoardPorts.clear();
-      this.reachableBoardPorts.addAll(newReachableBoardPorts);
+      reachableBoardPorts.clear();
+      reachableBoardPorts.addAll(newReachableBoardPorts);
     }
   }
 

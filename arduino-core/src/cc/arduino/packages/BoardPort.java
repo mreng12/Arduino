@@ -176,6 +176,10 @@ public class BoardPort {
         if (suffix >= 0) {
           prop += "." + suffix;
         }
+        if (prop == ".") {
+          found = (board.getId().equals(value));
+          break;
+        }
         if (!boardProps.containsKey(prop)) {
           return false;
         }

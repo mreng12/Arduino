@@ -169,11 +169,13 @@ public class BoardPort {
     // so we must search starting from suffix ".0" and increasing until we
     // found a match or the board has no more identification properties defined
 
-    for (int suffix = 0;; suffix++) {
+    for (int suffix = -1;; suffix++) {
       boolean found = true;
       for (String prop : identificationProps.keySet()) {
         String value = identificationProps.get(prop);
-        prop += "." + suffix;
+        if (suffix >= 0) {
+          prop += "." + suffix;
+        }
         if (!boardProps.containsKey(prop)) {
           return false;
         }

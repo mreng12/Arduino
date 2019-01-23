@@ -269,6 +269,8 @@ public class Base {
     splash.splashText(tr("Initializing packages..."));
     BaseNoGui.initPackages();
 
+    parser.getUploadPort().ifPresent(BaseNoGui::selectSerialPort);
+
     splash.splashText(tr("Preparing boards..."));
 
     if (!isCommandLine()) {

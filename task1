@@ -1,0 +1,65 @@
+int red = 1;
+int yell = 2;
+int green = 3;
+int buttonstate;
+int sw =5;
+int red2 = 6;
+int green2 = 7;
+
+
+
+
+void setup() {
+  pinMode(red,OUTPUT);
+  pinMode(yell,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(sw,INPUT);
+  pinMode(red2,OUTPUT);
+  pinMode(green2,OUTPUT);
+  
+
+}
+
+void loop() {
+  buttonstate = digitalRead(sw);
+  if ( buttonstate == HIGH)
+  { 
+    digitalWrite(red,HIGH);
+    digitalWrite(green,LOW);
+    digitalWrite(green2,LOW);
+    digitalWrite(yell,LOW);
+    
+    digitalWrite(red2,HIGH);
+    
+    
+  }
+  else 
+  {
+    digitalWrite(red,HIGH);
+    digitalWrite(green2,HIGH);
+     digitalWrite(yell,LOW);
+    digitalWrite(green,LOW);
+    digitalWrite(red2,LOW);
+    delay(5000);
+    digitalWrite(red,LOW);
+    digitalWrite(yell,HIGH);
+    digitalWrite(green2,HIGH);
+    digitalWrite(red2,LOW);
+    digitalWrite(green,LOW);
+    delay(1000);
+    digitalWrite(red,LOW);
+    digitalWrite(yell,LOW);
+    digitalWrite(green2,LOW);
+    digitalWrite(green,HIGH);
+    digitalWrite(red2,HIGH);
+    delay(5000);
+    digitalWrite(green2,LOW);
+    digitalWrite(green,LOW); 
+    digitalWrite(red,LOW);
+    digitalWrite(yell,HIGH);
+    digitalWrite(red2,HIGH);
+    delay(1000);
+  }
+ 
+
+}
